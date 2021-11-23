@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Slide } from "react-awesome-reveal";
 import { matchesCollection } from "../../../firebase";
+import MatchesBlock from "../../Utils/matches_block";
 
 const Blocks = () => {
   const [matches, setMatches] = useState([]);
@@ -14,14 +15,27 @@ const Blocks = () => {
             id: doc.id,
             ...doc.data(),
           }));
-          console.log(matches);
+          setMatches(matches);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [matches]);
-  return <div>hello</div>;
+
+  const showMatches = (matches) =>
+    matches
+      ? matches.map((match) => (
+          <Slide bottom key={matches.id} className="item" triggerOnce>
+            <div>
+              <div className="wrapper">
+                <MatchesBlock match={match} />
+              </div>
+            </div>
+          </Slide>
+        ))
+      : null;
+  return <div className="home_matches">{showMatches(matches)}</div>;
 };
 
 export default Blocks;
