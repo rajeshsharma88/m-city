@@ -43,7 +43,7 @@ const HomeCards = (props) => {
         enter={{
           left: [card.left],
           bottom: [card.bottom],
-          timing: { delay: 500, duration: 500, ease: easePolyOut },
+          timing: { delay: 1000, duration: 500, ease: easePolyOut },
         }}>
         {({ left, bottom }) => (
           <div

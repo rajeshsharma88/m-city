@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tag } from "../../Utils/tools";
 import { Fade } from "react-awesome-reveal";
 import HomeCards from "./cards";
@@ -9,7 +9,8 @@ let tagDefault = {
   color: "#ffffff",
 };
 
-const MeetPlayers = () => {
+const MeetPlayers = (props) => {
+  const [show, setShow] = useState(false);
   const showTextTag = (text) => (
     <Tag
       {...tagDefault}
@@ -21,7 +22,13 @@ const MeetPlayers = () => {
     </Tag>
   );
   return (
-    <Fade triggerOnce>
+    <Fade
+      onVisibilityChange={(inView) => {
+        if (inView) {
+          setShow(true);
+        }
+      }}
+      triggerOnce>
       <div className="home_meetplayers">
         <div className="container">
           <div className="home_meetplayers_wrapper">
