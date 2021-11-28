@@ -8,12 +8,17 @@ import Home from "./components/Home";
 import SignIn from "./components/Signin";
 import Dashboard from "./components/Admin/Dashboard";
 import AuthGuard from "./Hoc/Auth";
-
+import AdminPlayers from "./components/Admin/players";
 const Routes = ({ user }) => {
   return (
     <BrowserRouter>
       <Header user={user} />
       <Switch>
+        <Route
+          path="/admin_players"
+          exact
+          component={AuthGuard(AdminPlayers)}
+        />
         <Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
         <Route
           path="/sign_in"
